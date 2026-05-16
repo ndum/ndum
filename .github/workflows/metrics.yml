@@ -1,12 +1,11 @@
 name: Metrics
 on:
-  # Täglich um 00:00 UTC neu generieren
+  # Regenerate daily at 00:00 UTC
   schedule: [{cron: "0 0 * * *"}]
-  # Manuell ausführbar (Actions-Tab → "Run workflow")
+  # Allow manual runs from the Actions tab → "Run workflow"
   workflow_dispatch:
-  # Bei jedem Push auf main
+  # Run on every push to main
   push: {branches: ["main"]}
-
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
@@ -20,15 +19,15 @@ jobs:
           template: classic
           base: header, activity, community, repositories, metadata
           
-          # Top Languages Plugin (ersetzt deine alte Top-Langs-Card)
+          # Top languages plugin (replaces the old top-langs card)
           plugin_languages: yes
           plugin_languages_ignored: html, css, scss
           plugin_languages_details: percentage
           plugin_languages_limit: 10
           
-          # Optional: schöne Extras
+          # Optional extras
           plugin_isocalendar: yes
           plugin_followup: yes
           
-          # Sprache & Zeitzone
+          # Locale & timezone
           config_timezone: Europe/Zurich
